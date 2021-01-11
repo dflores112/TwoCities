@@ -12,7 +12,7 @@ app.get('/cities', (req,res) =>{
   .then((response) => response.data._links['ua:item'].forEach((city) => {
     let temp = {};
     temp['name'] = city.name
-    temp['link'] = city.href
+    temp['link'] = city.href.concat('scores')
     data.push(temp)
   }))
   .then(() => res.send(data))
