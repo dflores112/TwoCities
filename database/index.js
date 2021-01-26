@@ -5,15 +5,10 @@ mongoose.connect('mongodb://localhost/d3TwoCities', { useNewUrlParser: true, use
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
-const citySchema = new mongoose.Schema({
+const citySchema = mongoose.Schema({
   name: String,
-  housing: Number,
-  startups: Number,
-  transportation: Number,
-  economy: Number,
-  costOfLiving: Number,
-  education: Number,
-  safety: Number,
+  overall: Number,
+  link: String,
 });
 
 const City = mongoose.model('City', citySchema);
@@ -21,16 +16,9 @@ const City = mongoose.model('City', citySchema);
 function addCity(city) {
   const location = new City({
     name: city.name,
-    housing: city.housing,
-    startups: city.startups,
-    transportation: city.transportation,
-    economy: city.economy,
-    costOfLiving: city.costOfLiving,
-    education: city.education,
-    safety: city.safety,
+    link: city.link,
     overall: city.overall,
   });
-
   location.save((err) => {
     if (err) {
       console.log(err);
@@ -38,5 +26,20 @@ function addCity(city) {
   });
 }
 
+function selectAllCities(callback) {
+  City.find({}, (err, cities) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, cities);
+    }
+  });
+}
 
-module.exports.addCity = addCity
+const drop = () => {
+  db.dropDatabase();
+};
+
+module.exports.addCity = addCity;
+module.exports.selectAllCities = selectAllCities;
+module.exports.drop = drop;
