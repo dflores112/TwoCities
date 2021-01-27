@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-import ComparisionChart from './comparisionChart.jsx';
+import CityPicker from './cityPicker.jsx';
+import CityScoresChart from './cityScoresChart.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cities: [], selected: '' };
-    this.getCityStats = this.getCityStats.bind(this);
+    this.state = { cities: [] };
   }
 
   componentDidMount() {
@@ -20,12 +20,19 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  getCityStats(city) {
+  getCityScores(city) {
+    axios.get(`/api/cities/${city}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }
 
   render() {
+    const { cities } = this.state;
     return (
-      <ComparisionChart cities={this.state.cities} getCityStats={this.getCityStats} scores={this.state.selected} />
+      <>
+        <CityPicker cities={cities} />
+        <CityScoresChart />
+      </>
     );
   }
 }
