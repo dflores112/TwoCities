@@ -12,6 +12,7 @@ const citySchema = mongoose.Schema({
 });
 
 const City = mongoose.model('City', citySchema);
+const { ObjectId } = require('mongodb');
 
 function addCity(city) {
   const location = new City({
@@ -36,6 +37,16 @@ function selectAllCities(callback) {
   });
 }
 
+function findCity(id, callback) {
+  City.find({ _id: new ObjectId(id) }, (err, city) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, city);
+    }
+  });
+}
+
 const drop = () => {
   db.dropDatabase();
 };
@@ -43,3 +54,4 @@ const drop = () => {
 module.exports.addCity = addCity;
 module.exports.selectAllCities = selectAllCities;
 module.exports.drop = drop;
+module.exports.findCity = findCity;

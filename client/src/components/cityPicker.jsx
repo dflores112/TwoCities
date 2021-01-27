@@ -1,39 +1,40 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+
 class CityPicker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { id: '' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ id: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.getCityStats(this.state.value);
+    const { getCityScores } = this.props;
+    const { id } = this.state;
+    getCityScores(id);
   }
 
   render() {
     const { cities } = this.props;
+    const { id } = this.state;
     const options = cities.map((city) => [
-      <option value={city.name} key={Math.random()}>{city.name}</option>,
+      <option value={city._id} key={Math.random()}>{city.name}</option>,
     ]);
 
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Pick your city:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="none">none</option>
-            {options}
-          </select>
-        </label>
+        Pick your city:
+        <select value={id} onChange={this.handleChange}>
+          <option value="none">none</option>
+          {options}
+        </select>
         <input type="submit" value="Submit" />
       </form>
 

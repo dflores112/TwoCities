@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { cities: [] };
+    this.getCityScores = this.getCityScores.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class App extends React.Component {
     const { cities } = this.state;
     return (
       <>
-        <CityPicker cities={cities} />
+        <CityPicker cities={cities} getCityScores={this.getCityScores} />
         <CityScoresChart />
       </>
     );

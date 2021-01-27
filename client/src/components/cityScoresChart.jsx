@@ -5,10 +5,10 @@ import styled from 'styled-components';
 const ChartWrap = styled.div`
 height: 500px;
 width: 500px;
-`
+`;
 function cityScoresChart(props) {
   const data = {
-    labels: ['Housing', 'Cost of Living', 'Startups', 'Venture Capital', 'Travel Connectivity', 'Commute', 'Business Freedom', 'Safety', 'Healthcare', 'Education', 'Enviromental Quality', 'Economy', 'Internet Access', 'Leisure & Culture', 'Tolerance','Outdoors'],
+    labels: ['Housing', 'Cost of Living', 'Startups', 'Venture Capital', 'Travel Connectivity', 'Commute', 'Business Freedom', 'Safety', 'Healthcare', 'Education', 'Enviromental Quality', 'Economy', 'Internet Access', 'Leisure & Culture', 'Tolerance', 'Outdoors'],
     datasets: [
       {
         label: 'Anchorage',
@@ -23,11 +23,11 @@ function cityScoresChart(props) {
   };
   return (
     <ChartWrap>
-   <Bar
-    data={data}
-    height={500}
-    width={500}
-    />
+      <Bar
+        data={data}
+        height={500}
+        width={500}
+      />
     </ChartWrap>
 
   );
