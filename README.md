@@ -1,6 +1,6 @@
 # Two Cities
 
-> Web service allowing users to compare cities based on an avg score along with different categories including: Housing, Startups, Transportation, Economy, Cost of Living, Education, Safety
+> Web service allowing users to compare cities based on an avg score along with different categories including: Housing, Startups, Transportation, Economy, Cost of Living, Education, Safety , etc
 
 
 ## Usage
@@ -20,6 +20,6 @@ From within the root directory:
 ```sh
 npm install
 npm run seed
-npm run react-dev
+npm run build
 npm run start
 ```
