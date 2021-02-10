@@ -10,14 +10,17 @@ app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/api/cities/:cityId', (req, res) => {
   const { cityId } = req.params;
-
   dbMethods.findCity(cityId, (err, city) => {
     if (err) {
       res.sendStatus(500);
     } else {
-      const { link } = city[0];
+      const { link, name } = city[0];
+      const scores = {};
+      scores['name'] = name;
+      scores['stats'] = [];
       axios.get(link)
-        .then((response) => res.send(response.data.categories))
+        .then((response) => response.data.categories.forEach((category) => scores['stats'].push(category.score_out_of_10)))
+        .then(() => res.status(200).send(scores))
         .catch(() => res.sendStatus(500));
     }
   });

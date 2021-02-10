@@ -7,18 +7,20 @@ height: 500px;
 width: 500px;
 `;
 
-function CityScoresChart(props) {
+function CityScoresOverallChart(props) {
+  const names = props.cities.map((city) => city.name);
+  const scores = props.cities.map((city) => city.overall)
   const data = {
-    labels: ['Housing', 'Cost of Living', 'Startups', 'Venture Capital', 'Travel Connectivity', 'Commute', 'Business Freedom', 'Safety', 'Healthcare', 'Education', 'Enviromental Quality', 'Economy', 'Internet Access', 'Leisure & Culture', 'Tolerance', 'Outdoors'],
+    labels: names,
     datasets: [
       {
-        label: props.cityScores[0].name,
+        label: 'Overall City Score',
         backgroundColor: 'rgba(147,225,216, 0.3)',
         borderColor: 'rgba(147,225,216, 0.9)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(147,225,216, 0.3)',
         hoverBorderColor: 'rgba(147,225,216, 0.9)',
-        data: props.cityScores[0].stats,
+        data: scores,
       },
     ],
   };
@@ -34,4 +36,4 @@ function CityScoresChart(props) {
   );
 }
 
-export default CityScoresChart;
+export default CityScoresOverallChart;
