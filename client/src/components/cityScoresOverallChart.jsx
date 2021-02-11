@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 const ChartWrap = styled.div`
 height: 500px;
-width: 500px;
+width: 800px;
 `;
 
 function CityScoresOverallChart(props) {
   const names = props.cities.map((city) => city.name);
-  const scores = props.cities.map((city) => city.overall)
+  const scores = props.cities.map((city) => city.overall);
   const data = {
     labels: names,
     datasets: [
@@ -25,14 +25,13 @@ function CityScoresOverallChart(props) {
     ],
   };
   return (
-    <ChartWrap>
+    // <ChartWrap>
       <Bar
         data={data}
         height={500}
-        width={500}
+        width={800}
       />
-    </ChartWrap>
-
+    // </ChartWrap>
   );
 }
 
