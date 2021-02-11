@@ -12,6 +12,7 @@ async function getOverall(storage) {
     const res = await fetch(links[i].link);
     const data = await res.json();
     clone[cityNames[i]].overall = data.teleport_city_score;
+    data.categories.forEach((category) => clone[cityNames[i]][category.name] = category.score_out_of_10);
   }
   for (let j = 0; j < cityNames.length; j++) {
     db.addCity(clone[cityNames[j]]);
