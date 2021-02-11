@@ -13,7 +13,6 @@ margin: auto;
 width: 90%;
 `;
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -41,10 +40,17 @@ class App extends React.Component {
     const { cities } = this.state;
     if (val === 'ascending') {
       cities.sort((a, b) => a.overall - b.overall);
-    } else {
+      this.setState({ cities });
+    } else if (val === 'descending') {
       cities.sort((a, b) => b.overall - a.overall);
+      this.setState({ cities });
+    } else if (val === 'top') {
+      cities.sort((a, b) => b.overall - a.overall);
+      const top = cities.slice(0, 50);
+      this.setState({ cities: top });
+    } else {
+      this.getCities();
     }
-    this.setState({ cities });
   }
 
   render() {
@@ -55,9 +61,11 @@ class App extends React.Component {
         <CityScoresChart cityScores={cityScores} />
 
         <ChartWrap>
-        <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
-        <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
-        <CityScoresOverallChart cities={cities} />
+          <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
+          <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
+          <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
+          <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
+          <CityScoresOverallChart cities={cities} />
         </ChartWrap>
 
       </>

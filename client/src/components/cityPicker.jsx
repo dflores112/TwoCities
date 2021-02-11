@@ -30,7 +30,7 @@ class CityPicker extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         Pick your city:
-        <select value={id} onChange={this.handleChange}>
+        <select value={id} onChange={this.handleChange} >
           <option value="none">none</option>
           {options}
         </select>
