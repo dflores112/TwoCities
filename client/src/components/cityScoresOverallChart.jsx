@@ -19,11 +19,11 @@ function CityScoresOverallChart(props) {
     ],
   };
   return (
-      <Bar
-        data={data}
-        height={500}
-        width={800}
-      />
+    <Bar
+      data={data}
+      height={500}
+      width={800}
+    />
   );
 }
 

@@ -12,16 +12,24 @@ class CategoryTable extends React.Component {
     this.setState({ category: event.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     event.preventDefault();
     const { sortCitiesByCategory } = this.props;
     const { category } = this.state;
     sortCitiesByCategory(category);
   }
 
-
   render() {
     const { cities } = this.props;
+
+    const list = cities.slice(0, 20).map((city, i) => (
+      <div>
+        {i + 1}
+        .
+        {' '}
+        {city.name}
+      </div>
+    ));
     return (
       <>
         <form onSubmit={this.handleSubmit}>
@@ -46,18 +54,8 @@ class CategoryTable extends React.Component {
             <option value="ventureCapital"> Venture Capital</option>
           </select>
           <input type="submit" value="Submit" />
+          {list || null}
         </form>
-        <div>
-
-          {cities ? cities.map((city, i) => {
-            <div>
-              {i}
-              .
-              {' '}
-              {city.name}
-            </div>;
-          }) : null}
-        </div>
       </>
     );
   }

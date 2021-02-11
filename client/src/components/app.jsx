@@ -76,6 +76,7 @@ class App extends React.Component {
           <CategoryTable cities={cities} sortCitiesByCategory={this.sortCitiesByCategory} />
         </UpperWrap>
         <ChartWrap>
+        <div>Overall City Scores</div>
           <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
           <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
           <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
