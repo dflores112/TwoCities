@@ -22,7 +22,7 @@ grid-template-columns: 50% 50%
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cities: [], cityScores: temp };
+    this.state = { cities: [], cityScores: temp, cityCount: 0 };
     this.getCityScores = this.getCityScores.bind(this);
     this.sortCitiesByCategory = this.sortCitiesByCategory.bind(this);
   }
@@ -38,8 +38,20 @@ class App extends React.Component {
   }
 
   getCityScores(city) {
+    const { cityScores, cityCount } = this.state;
+    if (cityCount === 2) {
+      alert("You may only compare two cities at a time.")
+    }
+    if (cityCount === 0) {
+      cityScores.shift();
+      this.setState({ cityCount: 1 });
+    } else {
+      this.setState({ cityCount: 2})
+    }
+
     axios.get(`/api/cities/${city}`)
-      .then((res) => this.setState({ cityScores: [res.data] }))
+      .then((res) => cityScores.push(res.data))
+      .then(() => this.setState({ cityScores }))
       .catch((err) => console.log(err));
   }
 
@@ -70,13 +82,14 @@ class App extends React.Component {
     const { cities, cityScores } = this.state;
     return (
       <>
+        <h1>Two Cities</h1>
         <CityPicker cities={cities} getCityScores={this.getCityScores} />
         <UpperWrap>
           <CityScoresChart cityScores={cityScores} />
           <CategoryTable cities={cities} sortCitiesByCategory={this.sortCitiesByCategory} />
         </UpperWrap>
         <ChartWrap>
-        <div>Overall City Scores</div>
+          <div>Overall City Scores</div>
           <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
           <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
           <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>

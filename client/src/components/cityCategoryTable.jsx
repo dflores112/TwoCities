@@ -23,7 +23,7 @@ class CategoryTable extends React.Component {
     const { cities } = this.props;
 
     const list = cities.slice(0, 20).map((city, i) => (
-      <div>
+      <div key={Math.random()}>
         {i + 1}
         .
         {' '}
