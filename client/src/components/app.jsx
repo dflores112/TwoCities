@@ -11,12 +11,33 @@ const temp = [{ name: 'Ankara', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 
 
 const ChartWrap = styled.div`
 margin: auto;
-width: 90%;
+width: 80%;
+height: 100px;
 `;
 
 const UpperWrap = styled.div`
 display: grid;
-grid-template-columns: 50% 50%
+grid-template-columns: 50% 50%;
+width: 90%;
+`;
+
+const UpperWrapCenter = styled.div`
+display: flex;
+justify-content: center;
+width: 100%;
+`;
+
+const AppWrap = styled.div`
+height: 100%;
+`;
+
+const ComponentsWrap = styled.div`
+height: 75%;
+`;
+const ButtonWrap = styled.div`
+display: flex;
+justify-content: center;
+padding: 5px;
 `;
 
 class App extends React.Component {
@@ -40,13 +61,13 @@ class App extends React.Component {
   getCityScores(city) {
     const { cityScores, cityCount } = this.state;
     if (cityCount === 2) {
-      alert("You may only compare two cities at a time.")
+      alert('You may only compare two cities at a time.');
     }
     if (cityCount === 0) {
       cityScores.shift();
       this.setState({ cityCount: 1 });
     } else {
-      this.setState({ cityCount: 2})
+      this.setState({ cityCount: 2 });
     }
 
     axios.get(`/api/cities/${city}`)
@@ -81,22 +102,34 @@ class App extends React.Component {
   render() {
     const { cities, cityScores } = this.state;
     return (
-      <>
-        <h1>Two Cities</h1>
+
+      <AppWrap>
+          <h1> Two Cities</h1>
+        <ComponentsWrap>
+
         <CityPicker cities={cities} getCityScores={this.getCityScores} />
+        <UpperWrapCenter>
         <UpperWrap>
           <CityScoresChart cityScores={cityScores} />
           <CategoryTable cities={cities} sortCitiesByCategory={this.sortCitiesByCategory} />
         </UpperWrap>
+        </UpperWrapCenter>
+
         <ChartWrap>
+          <ButtonWrap>
           <div>Overall City Scores</div>
           <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
           <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
           <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
           <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
+          </ButtonWrap>
+
           <CityScoresOverallChart cities={cities} />
         </ChartWrap>
-      </>
+        </ComponentsWrap>
+
+      </AppWrap>
+
     );
   }
 }

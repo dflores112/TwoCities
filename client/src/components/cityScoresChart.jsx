@@ -3,8 +3,8 @@ import { Bar } from 'react-chartjs-2';
 import styled from 'styled-components';
 
 const ChartWrap = styled.div`
-height: 500px;
-width: 500px;
+
+width: 600px;
 `;
 
 function CityScoresChart(props) {
@@ -51,7 +51,7 @@ function CityScoresChart(props) {
       <Bar
         data={data}
         height={500}
-        width={500}
+        width={600}
       />
     </ChartWrap>
 

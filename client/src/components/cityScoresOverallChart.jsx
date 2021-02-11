@@ -1,6 +1,11 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-
+import styled from 'styled-components'
+const ChartWrap = styled.div`
+margin: auto;
+width: 65%;
+padding: 10px;
+`;
 function CityScoresOverallChart(props) {
   const names = props.cities.map((city) => city.name);
   const scores = props.cities.map((city) => city.overall);
@@ -19,11 +24,14 @@ function CityScoresOverallChart(props) {
     ],
   };
   return (
+    <ChartWrap>
     <Bar
       data={data}
-      height={500}
+      height={400}
       width={800}
     />
+    </ChartWrap>
+
   );
 }
 
