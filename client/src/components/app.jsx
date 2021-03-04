@@ -36,11 +36,12 @@ const AppWrap = styled.div`
 background-color:white;
 box-shadow: 0.5px 1px 5px 2px grey;
 border-radius: 25px;
-height:95%;
+height: 95vh;
 width: 90%;
 position: relative;
 left: 5%;
 top: 1.5%;
+overflow:hidden;
 `;
 
 const ComponentsWrap = styled.div`
