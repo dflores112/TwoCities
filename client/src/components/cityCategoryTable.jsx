@@ -1,4 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const CategoryWrap = styled.div`
+width: 80%;
+`;
 
 class CategoryTable extends React.Component {
   constructor(props) {
@@ -21,7 +26,6 @@ class CategoryTable extends React.Component {
 
   render() {
     const { cities } = this.props;
-
     const list = cities.slice(0, 20).map((city, i) => (
       <div key={Math.random()}>
         {i + 1}
@@ -31,7 +35,7 @@ class CategoryTable extends React.Component {
       </div>
     ));
     return (
-      <>
+      <CategoryWrap>
         <form onSubmit={this.handleSubmit}>
           Top Cities By Category:
           <select onChange={this.handleChange}>
@@ -56,7 +60,7 @@ class CategoryTable extends React.Component {
           <input type="submit" value="Submit" />
           {list || null}
         </form>
-      </>
+      </CategoryWrap>
     );
   }
 }

@@ -43,7 +43,9 @@ padding: 5px;
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cities: [], cityScores: temp, cityCount: 0 };
+    this.state = {
+      cities: [], cityScores: temp, cityCount: 0, overall: [], categories: [],
+    };
     this.getCityScores = this.getCityScores.bind(this);
     this.sortCitiesByCategory = this.sortCitiesByCategory.bind(this);
   }
@@ -54,7 +56,7 @@ class App extends React.Component {
 
   getCities() {
     axios.get('/scores')
-      .then((res) => this.setState({ cities: res.data }))
+      .then((res) => this.setState({ cities: res.data, overall: [...res.data], categories: [...res.data] }))
       .catch((err) => console.log(err));
   }
 
@@ -69,7 +71,6 @@ class App extends React.Component {
     } else {
       this.setState({ cityCount: 2 });
     }
-
     axios.get(`/api/cities/${city}`)
       .then((res) => cityScores.push(res.data))
       .then(() => this.setState({ cityScores }))
@@ -77,59 +78,55 @@ class App extends React.Component {
   }
 
   sortScores(val) {
-    const { cities } = this.state;
+    const { overall } = this.state;
     if (val === 'ascending') {
-      cities.sort((a, b) => a.overall - b.overall);
-      this.setState({ cities });
+      overall.sort((a, b) => a.overall - b.overall);
+      this.setState({ overall });
     } else if (val === 'descending') {
-      cities.sort((a, b) => b.overall - a.overall);
-      this.setState({ cities });
+      overall.sort((a, b) => b.overall - a.overall);
+      this.setState({ overall });
     } else if (val === 'top') {
-      cities.sort((a, b) => b.overall - a.overall);
-      const top = cities.slice(0, 50);
-      this.setState({ cities: top });
+      overall.sort((a, b) => b.overall - a.overall);
+      const top = overall.slice(0, 50);
+      this.setState({ overall: top });
     } else {
       this.getCities();
     }
   }
 
   sortCitiesByCategory(val) {
-    const { cities } = this.state;
-    cities.sort((a, b) => b[val] - a[val]);
-    this.setState({ cities });
+    const { categories } = this.state;
+    categories.sort((a, b) => b[val] - a[val]);
+    this.setState({ categories });
   }
 
   render() {
-    const { cities, cityScores } = this.state;
+    const {
+      cities, cityScores, categories, overall,
+    } = this.state;
     return (
-
       <AppWrap>
-          <h1> Two Cities</h1>
+        <h1> Two Cities</h1>
         <ComponentsWrap>
-
-        <CityPicker cities={cities} getCityScores={this.getCityScores} />
-        <UpperWrapCenter>
-        <UpperWrap>
-          <CityScoresChart cityScores={cityScores} />
-          <CategoryTable cities={cities} sortCitiesByCategory={this.sortCitiesByCategory} />
-        </UpperWrap>
-        </UpperWrapCenter>
-
-        <ChartWrap>
-          <ButtonWrap>
-          <div>Overall City Scores</div>
-          <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
-          <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
-          <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
-          <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
-          </ButtonWrap>
-
-          <CityScoresOverallChart cities={cities} />
-        </ChartWrap>
+          <CityPicker cities={cities} getCityScores={this.getCityScores} />
+          <UpperWrapCenter>
+            <UpperWrap>
+              <CityScoresChart cityScores={cityScores} />
+              <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
+            </UpperWrap>
+          </UpperWrapCenter>
+          <ChartWrap>
+            <ButtonWrap>
+              <div>Overall City Scores</div>
+              <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
+              <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
+              <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
+              <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
+            </ButtonWrap>
+            <CityScoresOverallChart cities={overall} />
+          </ChartWrap>
         </ComponentsWrap>
-
       </AppWrap>
-
     );
   }
 }
