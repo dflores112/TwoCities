@@ -2,6 +2,7 @@
 
 > Web service allowing users to compare cities based on an avg score along with different categories including: Housing, Startups, Transportation, Economy, Cost of Living, Education, Safety , etc
 
+<img src="TwoCities.png" alt="TwoCities"/>
 
 ## Usage
 
