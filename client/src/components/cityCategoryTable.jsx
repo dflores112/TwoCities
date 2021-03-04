@@ -4,6 +4,10 @@ import styled from 'styled-components';
 const CategoryWrap = styled.div`
 width: 80%;
 `;
+const Form = styled.form`
+top: -10%;
+position:relative;
+`;
 
 class CategoryTable extends React.Component {
   constructor(props) {
@@ -36,7 +40,7 @@ class CategoryTable extends React.Component {
     ));
     return (
       <CategoryWrap>
-        <form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           Top Cities By Category:
           <select onChange={this.handleChange}>
             <option value="education"> Education </option>
@@ -59,7 +63,7 @@ class CategoryTable extends React.Component {
           </select>
           <input type="submit" value="Submit" />
           {list || null}
-        </form>
+        </Form>
       </CategoryWrap>
     );
   }

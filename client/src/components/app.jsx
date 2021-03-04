@@ -19,6 +19,8 @@ const UpperWrap = styled.div`
 display: grid;
 grid-template-columns: 50% 50%;
 width: 90%;
+left: 5%;
+position: relative;
 `;
 
 const UpperWrapCenter = styled.div`
@@ -26,9 +28,19 @@ display: flex;
 justify-content: center;
 width: 100%;
 `;
+const Window = styled.div`
+height:1000px;
+`;
 
 const AppWrap = styled.div`
-height: 100%;
+background-color:white;
+box-shadow: 0.5px 1px 5px 2px grey;
+border-radius: 25px;
+height:95%;
+width: 90%;
+position: relative;
+left: 5%;
+top: 1.5%;
 `;
 
 const ComponentsWrap = styled.div`
@@ -38,6 +50,11 @@ const ButtonWrap = styled.div`
 display: flex;
 justify-content: center;
 padding: 5px;
+`;
+
+const Header = styled.h1`
+text-align: center;
+padding:10px;
 `;
 
 class App extends React.Component {
@@ -105,28 +122,31 @@ class App extends React.Component {
       cities, cityScores, categories, overall,
     } = this.state;
     return (
-      <AppWrap>
-        <h1> Two Cities</h1>
-        <ComponentsWrap>
-          <CityPicker cities={cities} getCityScores={this.getCityScores} />
-          <UpperWrapCenter>
-            <UpperWrap>
-              <CityScoresChart cityScores={cityScores} />
-              <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
-            </UpperWrap>
-          </UpperWrapCenter>
-          <ChartWrap>
-            <ButtonWrap>
-              <div>Overall City Scores</div>
-              <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
-              <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
-              <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
-              <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
-            </ButtonWrap>
-            <CityScoresOverallChart cities={overall} />
-          </ChartWrap>
-        </ComponentsWrap>
-      </AppWrap>
+      <Window>
+        <AppWrap>
+          <Header> Two Cities</Header>
+          <ComponentsWrap>
+            <CityPicker cities={cities} getCityScores={this.getCityScores} />
+            <UpperWrapCenter>
+              <UpperWrap>
+                <CityScoresChart cityScores={cityScores} />
+                <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
+              </UpperWrap>
+            </UpperWrapCenter>
+            <ChartWrap>
+              <ButtonWrap>
+                <div>Overall City Scores</div>
+                <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
+                <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
+                <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
+                <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
+              </ButtonWrap>
+              <CityScoresOverallChart cities={overall} />
+            </ChartWrap>
+          </ComponentsWrap>
+        </AppWrap>
+      </Window>
+
     );
   }
 }

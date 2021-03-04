@@ -15,11 +15,11 @@ function CityScoresOverallChart(props) {
     datasets: [
       {
         label: 'Overall City Score',
-        backgroundColor: 'rgba(147,225,216, 0.3)',
-        borderColor: 'rgba(147,225,216, 0.9)',
+        backgroundColor: 'rgba(103,170,249, 0.3)',
+        borderColor: 'rgba(103,170,249, 0.8)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(147,225,216, 0.3)',
-        hoverBorderColor: 'rgba(147,225,216, 0.9)',
+        hoverBackgroundColor: 'rgba(103,170,249, 0.8)',
+        hoverBorderColor: 'rgba(103,170,249, 0.8)',
         data: scores,
       },
     ],
