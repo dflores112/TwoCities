@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/CityScoresDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://172.17.0.2:27017/CityScoresDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// mongoose.connect('mongodb://localhost/CityScoresDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
+db.once('open', () => {
+  console.log('connected');
+});
 db.on('error', console.error.bind(console, 'connection error:'));
 
 const citySchema = mongoose.Schema({
