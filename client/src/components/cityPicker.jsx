@@ -38,7 +38,7 @@ class CityPicker extends React.Component {
       <Wrap onSubmit={this.handleSubmit}>
         Pick your city:
         <select value={id} onChange={this.handleChange}>
-          <option value="none">none</option>
+          <option value="none">Choose Below</option>
           {options}
         </select>
         <input type="submit" value="Submit" />

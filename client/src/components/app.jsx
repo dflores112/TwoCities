@@ -30,6 +30,8 @@ width: 100%;
 `;
 const Window = styled.div`
 height:1000px;
+font-family: Arial;
+
 `;
 
 const AppWrap = styled.div`

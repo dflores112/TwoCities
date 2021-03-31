@@ -9,6 +9,10 @@ top: -10%;
 position:relative;
 `;
 
+const CityName = styled.div`
+padding:7px;
+`
+
 class CategoryTable extends React.Component {
   constructor(props) {
     super(props);
@@ -30,13 +34,13 @@ class CategoryTable extends React.Component {
 
   render() {
     const { cities } = this.props;
-    const list = cities.slice(0, 20).map((city, i) => (
-      <div key={Math.random()}>
+    const list = cities.slice(0, 10).map((city, i) => (
+      <CityName key={Math.random()}>
         {i + 1}
         .
         {' '}
         {city.name}
-      </div>
+      </CityName>
     ));
     return (
       <CategoryWrap>
