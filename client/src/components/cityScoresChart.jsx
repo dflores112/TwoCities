@@ -2,9 +2,6 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import styled from 'styled-components';
 
-const ChartWrap = styled.div`
-width: 80%;
-`;
 
 function CityScoresChart(props) {
   const data = {
@@ -46,13 +43,9 @@ function CityScoresChart(props) {
   }
 
   return (
-    <ChartWrap>
       <Bar
         data={data}
-        height={500}
-        width={600}
       />
-    </ChartWrap>
 
   );
 }

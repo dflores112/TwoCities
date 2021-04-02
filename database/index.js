@@ -31,6 +31,7 @@ const citySchema = mongoose.Schema({
   leisureAndCulture: Number,
   tolerance: Number,
   outdoors: Number,
+  details: String,
 });
 
 const City = mongoose.model('City', citySchema);
@@ -58,6 +59,7 @@ function addCity(city) {
     leisureAndCulture: city['Leisure & Culture'],
     tolerance: city.Tolerance,
     outdoors: city.Outdoors,
+    details: city.details,
   });
   location.save((err) => {
     if (err) {

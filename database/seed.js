@@ -22,7 +22,7 @@ async function getOverall(storage) {
 async function getCityScores() {
   const cities = {};
   axios.get('https://api.teleport.org/api/urban_areas/')
-    .then((res) => res.data._links['ua:item'].forEach((city) => cities[city.name] = { link: city.href.concat('scores'), name: city.name }))
+    .then((res) => res.data._links['ua:item'].forEach((city) => cities[city.name] = { link: city.href.concat('scores'), name: city.name, details: city.href.concat('details') }))
     .then(() => getOverall(cities))
     .then(() => console.log('Completed Seed'))
     .catch((err) => console.log(err));

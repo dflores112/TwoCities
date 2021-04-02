@@ -1,64 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-
 import CityPicker from './cityPicker.jsx';
 import CityScoresChart from './cityScoresChart.jsx';
-import CityScoresOverallChart from './cityScoresOverallChart.jsx';
-import CategoryTable from './cityCategoryTable.jsx';
+import OverallScoresChart from './OverallScoresChart.jsx';
+import CategoryTable from './CategoryTable.jsx';
+import CostOfLivingChart from './CostOfLivingChart.jsx';
+import Styles from './Styled.jsx';
 
 const temp = [{ name: 'Ankara', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 7.4, 5.7, 2.02, 2.93, 4.09, 4.32, 2.31, 8.63, 4.48, 5.14] }];
-
-const ChartWrap = styled.div`
-margin: auto;
-width: 80%;
-height: 100px;
-`;
-
-const UpperWrap = styled.div`
-display: grid;
-grid-template-columns: 50% 50%;
-width: 90%;
-left: 5%;
-position: relative;
-`;
-
-const UpperWrapCenter = styled.div`
-display: flex;
-justify-content: center;
-width: 100%;
-`;
-const Window = styled.div`
-height:1000px;
-font-family: Arial;
-
-`;
-
-const AppWrap = styled.div`
-background-color:white;
-box-shadow: 0.5px 1px 5px 2px grey;
-border-radius: 25px;
-height: 95vh;
-width: 90%;
-position: relative;
-left: 5%;
-top: 1.5%;
-overflow:hidden;
-`;
-
-const ComponentsWrap = styled.div`
-height: 75%;
-`;
-const ButtonWrap = styled.div`
-display: flex;
-justify-content: center;
-padding: 5px;
-`;
-
-const Header = styled.h1`
-text-align: center;
-padding:10px;
-`;
 
 class App extends React.Component {
   constructor(props) {
@@ -125,31 +74,30 @@ class App extends React.Component {
       cities, cityScores, categories, overall,
     } = this.state;
     return (
-      <Window>
-        <AppWrap>
-          <Header> Two Cities</Header>
-          <ComponentsWrap>
+      <>
+        <Styles.Header> Two Cities</Styles.Header>
+        <Styles.ContainerGrid>
+          <Styles.Container>
             <CityPicker cities={cities} getCityScores={this.getCityScores} />
-            <UpperWrapCenter>
-              <UpperWrap>
-                <CityScoresChart cityScores={cityScores} />
-                <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
-              </UpperWrap>
-            </UpperWrapCenter>
-            <ChartWrap>
-              <ButtonWrap>
-                <div>Overall City Scores</div>
-                <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
-                <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
-                <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
-                <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
-              </ButtonWrap>
-              <CityScoresOverallChart cities={overall} />
-            </ChartWrap>
-          </ComponentsWrap>
-        </AppWrap>
-      </Window>
-
+            <CityScoresChart cityScores={cityScores} />
+          </Styles.Container>
+          <Styles.Container>
+            <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
+          </Styles.Container>
+          <Styles.Container>
+            <Styles.ButtonWrap>
+              <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
+              <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
+              <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
+              <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
+            </Styles.ButtonWrap>
+            <OverallScoresChart cities={overall} />
+          </Styles.Container>
+          <Styles.Container>
+            <CostOfLivingChart />
+          </Styles.Container>
+        </Styles.ContainerGrid>
+      </>
     );
   }
 }
