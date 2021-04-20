@@ -30,9 +30,13 @@ npm run start
 
 #### Task 1: Deploy using Amazon EC2 and Docker
 - Used two separate containers one with the application and one for the latest mongo build
+
+```sh
 apt install docker.io
 docker pull mongo:latest
 docker run -d --name mongo mongo:latest
+```
+
 
 - Pull down Docker Container from DockerHub
 docker pull dflores112/twocities:initial
@@ -42,18 +46,30 @@ docker inspect bridge
 - Change where the database connects to:
 
 Previous :
+
+```sh
 mongoose.connect('mongodb://localhost/CityScoresDB', { useNewUrlParser: true, useUnifiedTopology: true });
+```
  
 After change:
+
+```sh
 mongoose.connect('mongodb://172.17.0.3:27017/CityScoresDB', { useNewUrlParser: true, useUnifiedTopology: true });
+```
 
 - Once you are connected process seeding script:
+
+```sh
 docker exec -it *container-anem /bin/bash
 Npm run seed
 Control + d
+```
 
 - Once seeded spin up a container from the docker image pulled down
+
+```sh
 docker run -d -p 80:3000 --name *container-name --rm dflores112/twocities:initial
+```
 
 #### Task 2: Initial Render and insights using Google page speeds:
 
@@ -87,7 +103,11 @@ docker run -d -p 80:3000 --name *container-name --rm dflores112/twocities:initia
 #### Task 4: Changed the node env to reduce the size of React’s vendor by using production settings, which would remove all the development oriented warnings and overhead
 
 - https://facebook.github.io/react/docs/optimizing-performance.html
-- plugins: [ new webpack.DefinePlugin({   'process.env.NODE_ENV': JSON.stringify('production') })]
+
+```sh
+plugins: [ new webpack.DefinePlugin({   'process.env.NODE_ENV': JSON.stringify('production') })]
+```
+
 - The first thing I notice after rebuilding the bundle.js is the size of the bundle compared to before the plugin. The size before adding plugin is 6.6 MB - after implementing plugin the bundle size 4MB
 
 <img src="https://live.staticflickr.com/65535/51128298098_faff970239.jpg" alt="Mobile2"/>
