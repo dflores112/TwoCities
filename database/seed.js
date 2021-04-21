@@ -30,9 +30,9 @@ async function getCityScores() {
 }
 
 function kill(){
-process.on('exit', function(code) {
-    return console.log(`About to exit with code ${code}`);
-});
+setTimeout(function(){
+  process.kill(0)
+},300000)
 }
 
 getCityScores();
