@@ -25,7 +25,14 @@ async function getCityScores() {
     .then((res) => res.data._links['ua:item'].forEach((city) => cities[city.name] = { link: city.href.concat('scores'), name: city.name, details: city.href.concat('details') }))
     .then(() => getOverall(cities))
     .then(() => console.log('Completed Seed'))
+    .then(() => kill())
     .catch((err) => console.log(err));
+}
+
+function kill(){
+process.on('exit', function(code) {
+    return console.log(`About to exit with code ${code}`);
+});
 }
 
 getCityScores();
