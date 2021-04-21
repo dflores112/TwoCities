@@ -31,7 +31,7 @@ async function getCityScores() {
 
 function kill(){
 setTimeout(function(){
-  process.kill(0)
+  process.exit(0)
 },300000)
 }
 
