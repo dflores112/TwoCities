@@ -7,7 +7,7 @@ import CategoryTable from './CategoryTable.jsx';
 import CostOfLivingChart from './CostOfLivingChart.jsx';
 import Styles from './Styled.jsx';
 
-const temp = [{ name: 'Belize', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 7.4, 5.7, 2.02, 2.93, 4.09, 4.32, 2.31, 8.63, 4.48, 5.14] }];
+const temp = [{ name: 'Covina', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 7.4, 5.7, 2.02, 2.93, 4.09, 4.32, 2.31, 8.63, 4.48, 5.14] }];
 
 class App extends React.Component {
   constructor(props) {
