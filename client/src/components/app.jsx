@@ -75,7 +75,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <>
-        <Styles.Header> Two Cities</Styles.Header>
+        <Styles.Header> Three Cities</Styles.Header>
         <Styles.ContainerGrid>
           <Styles.Container>
             <CityPicker cities={cities} getCityScores={this.getCityScores} />
