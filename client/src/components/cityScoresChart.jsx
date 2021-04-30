@@ -11,39 +11,64 @@ function CityScoresChart(props) {
     if (props.cityScores.length === 1) {
       data.datasets.push({
         label: props.cityScores[0].name,
-        backgroundColor: 'rgba(103,170,249, 0.3)',
-        borderColor: 'rgba(103,170,249, 0.8)',
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        borderColor: 'rgba(255, 255, 255, 0.8)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(103,170,249, 0.8)',
-        hoverBorderColor: 'rgba(103,170,249, 0.8)',
+        hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
+        hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
         data: props.cityScores[0].stats,
       });
     } else {
       const temp1 = [{
         label: props.cityScores[0].name,
-        backgroundColor: 'rgba(103,170,249, 0.3)',
-        borderColor: 'rgba(103,170,249, 0.8)',
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        borderColor: 'rgba(255, 255, 255, 0.8)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(103,170,249, 0.8)',
-        hoverBorderColor: 'rgba(103,170,249, 0.8)',
+        hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
+        hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
         data: props.cityScores[0].stats,
       }, {
         label: props.cityScores[1].name,
-        backgroundColor: 'rgba(147,225,216, 0.3)',
-        borderColor: 'rgba(147,225,216, 0.9)',
+        backgroundColor: 'rgba(235, 115, 38, 0.3)',
+        borderColor: 'rgba(235, 115, 38, 0.8)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(147,225,216, 0.9)',
-        hoverBorderColor: 'rgba(147,225,216, 0.9)',
+        hoverBackgroundColor: 'rgba(235, 115, 38, 0.8)',
+        hoverBorderColor: 'rgba(235, 115, 38, 0.8)',
         data: props.cityScores[1].stats,
       }];
       data.datasets = temp1;
     }
   }
 
+  const options = {
+    legend: {
+      labels: {
+        fontColor: 'white',
+        fontSize: 18,
+      },
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: 'white',
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: 'white',
+          fontSize: 10,
+          stepSize: 1,
+          beginAtZero: true,
+        },
+      }],
+    },
+  };
+
   return (
-      <Bar
-        data={data}
-      />
+    <Bar
+      data={data}
+      options={options}
+    />
 
   );
 }

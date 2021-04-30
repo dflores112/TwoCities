@@ -10,20 +10,46 @@ function OverallScoresChart(props) {
     datasets: [
       {
         label: 'Overall City Score',
-        backgroundColor: 'rgba(103,170,249, 0.3)',
-        borderColor: 'rgba(103,170,249, 0.8)',
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        borderColor: 'rgba(255, 255, 255, 0.8)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(103,170,249, 0.8)',
-        hoverBorderColor: 'rgba(103,170,249, 0.8)',
+        hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
+        hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
         data: scores,
+        labelColor: 'rgb(102, 255, 204)',
       },
     ],
   };
-  return (
-      <Bar
-        data={data}
-      />
 
+  const options = {
+    legend: {
+      labels: {
+        fontColor: 'white',
+        fontSize: 18,
+      },
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: 'white',
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: 'white',
+          fontSize: 10,
+          stepSize: 1,
+          beginAtZero: true,
+        },
+      }],
+    },
+  };
+
+  return (
+    <Bar
+      data={data}
+      options={options}
+    />
 
   );
 }

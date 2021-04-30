@@ -17,15 +17,13 @@ padding: 5px;
 `;
 
 const Header = styled.h1`
-text-align: center;
+text-align: left;
 padding:10px;
 background-color: white;
 color: black;
-width: 100%;
-right: 1%;
-top: -15px;
+height:75px;
 position:relative;
-font-weight: 300;
+font-weight: 600;
 `;
 
 const Form = styled.form`
@@ -42,7 +40,7 @@ opacity: 1;
 font-family: sans-serif;
 background:transparent;
 color: white;
-padding: 5px 0px 5px 0px;
+padding: 5px;
 `;
 
 const Submit = styled.input`
@@ -53,7 +51,8 @@ font-weight: 600;
 font-size 17px;
 border-radius:4px;
 border-color:transparent;
-padding:10px;
+margin:5px;
+padding:7px;
 &:hover{
   color: #EB7326;
   background: transparent;
@@ -74,6 +73,7 @@ border-color:transparent;
 padding:10px;
 width: 24%;
 overflow:hidden;
+margin:5px;
 text-align:center;
 &:hover{
   color: #EB7326;
@@ -87,6 +87,8 @@ text-align:center;
 const CityName = styled.div`
 padding:7px;
 color: white;
+font-weight: 600;
+font-size: 16px;
 `;
 
 const styles = {
