@@ -1,11 +1,5 @@
 import React from 'react';
-
-import styled from 'styled-components';
-
-const Wrap = styled.form`
-position: relative;
-left: 10%;
-`;
+import Styles from './Styled.jsx';
 
 class CityPicker extends React.Component {
   constructor(props) {
@@ -35,14 +29,14 @@ class CityPicker extends React.Component {
     ]);
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Styles.Form onSubmit={this.handleSubmit}>
         Pick your city:
-        <select value={id} onChange={this.handleChange}>
+        <Styles.Select value={id} onChange={this.handleChange}>
           <option value="none">Choose Below</option>
           {options}
-        </select>
-        <input type="submit" value="Submit" />
-      </form>
+        </Styles.Select>
+        <Styles.Submit type="submit" value="Submit" />
+      </Styles.Form>
     );
   }
 }

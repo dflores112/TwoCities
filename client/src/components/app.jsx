@@ -86,10 +86,10 @@ class App extends React.Component {
           </Styles.Container>
           <Styles.Container>
             <Styles.ButtonWrap>
-              <button type="button" onClick={() => this.sortScores('ascending')}>Ascending</button>
-              <button type="button" onClick={() => this.sortScores('descending')}>Descending</button>
-              <button type="button" onClick={() => this.sortScores('top')}>Top 50</button>
-              <button type="button" onClick={() => this.sortScores('all')}>All Cities</button>
+              <Styles.Button type="button" onClick={() => this.sortScores('ascending')}>Ascending</Styles.Button>
+              <Styles.Button type="button" onClick={() => this.sortScores('descending')}>Descending</Styles.Button>
+              <Styles.Button type="button" onClick={() => this.sortScores('top')}>Top 50</Styles.Button>
+              <Styles.Button type="button" onClick={() => this.sortScores('all')}>All Cities</Styles.Button>
             </Styles.ButtonWrap>
             <OverallScoresChart cities={overall} />
           </Styles.Container>
