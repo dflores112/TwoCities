@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
 width: 80%;
-border-color: 1px solid red;
+margin:auto;
 `;
 const ContainerGrid = styled.div`
 display: grid;
@@ -16,7 +16,7 @@ justify-content: space-around;
 padding: 5px;
 `;
 
-const Header = styled.h1`
+const Header = styled.div`
 text-align: left;
 padding:10px;
 background-color: white;
@@ -24,6 +24,7 @@ color: black;
 height:75px;
 position:relative;
 font-weight: 600;
+
 `;
 
 const Form = styled.form`
@@ -41,6 +42,8 @@ font-family: sans-serif;
 background:transparent;
 color: white;
 padding: 5px;
+margin:4px;
+margin-top: 8px;
 `;
 
 const Submit = styled.input`
@@ -91,8 +94,12 @@ font-weight: 600;
 font-size: 16px;
 `;
 
+const Image = styled.img`
+height: 75px;
+`;
+
 const styles = {
-  Container, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button,
+  Container, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, Image,
 };
 
 export { styles as default };

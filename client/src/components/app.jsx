@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import CityPicker from './cityPicker.jsx';
 import CityScoresChart from './cityScoresChart.jsx';
 import OverallScoresChart from './OverallScoresChart.jsx';
@@ -75,7 +76,10 @@ class App extends React.Component {
     } = this.state;
     return (
       <>
-        <Styles.Header> Two Cities</Styles.Header>
+        <Styles.Header>
+          {' '}
+          <Styles.Image src="https://live.staticflickr.com/65535/51149263786_1fe794874b.jpg" alt="Italian Trulli" />
+        </Styles.Header>
         <Styles.ContainerGrid>
           <Styles.Container>
             <CityPicker cities={cities} getCityScores={this.getCityScores} />
