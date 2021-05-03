@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import Styles from './Styled.jsx';
 
@@ -8,6 +9,7 @@ class CityPicker extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getLocalPrices = this.getLocalPrices.bind(this);
   }
 
   handleChange(event) {
@@ -19,6 +21,13 @@ class CityPicker extends React.Component {
     const { getCityScores } = this.props;
     const { id } = this.state;
     getCityScores(id);
+    this.getLocalPrices(id);
+  }
+
+  getLocalPrices(id) {
+    axios.get(`/api/localPrices/${id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }
 
   render() {

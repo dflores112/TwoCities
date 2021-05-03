@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = 80;
+const port = 3000;
 const path = require('path');
 const dbMethods = require('../database/index.js');
 
@@ -32,6 +32,19 @@ app.get('/scores', (req, res) => {
       res.sendStatus(500);
     } else {
       res.send(cities);
+    }
+  });
+});
+
+app.get('/api/localPrices/:cityID', (req, res) => {
+  const { cityID } = req.params;
+  dbMethods.findCity(cityID, (err, city) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      axios.get(city[0].details)
+      .then((result) => res.send(result.data.categories[3].data))
+      .catch((err) => console.log(err));
     }
   });
 });

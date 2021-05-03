@@ -8,6 +8,7 @@ const ContainerGrid = styled.div`
 display: grid;
 grid-template-columns: 50% 50%;
 grid-template-rows: 50% 50%;
+padding:10px;
 `;
 
 const ButtonWrap = styled.div`
@@ -98,8 +99,16 @@ const Image = styled.img`
 height: 75px;
 `;
 
+const CostHeader = styled.div`
+color: #EB7326;
+font-size: 18px;
+font-weight: 600; 
+display: flex;
+justify-content: center;
+`;
+
 const styles = {
-  Container, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, Image,
+  Container, CostHeader, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, Image,
 };
 
 export { styles as default };
