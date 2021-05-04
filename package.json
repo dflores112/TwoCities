@@ -4,7 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack -d --watch",
+    "build": "webpack -d",
+    "react-dev": "webpack -d --watch",
     "start": "nodemon ./server/index.js",
     "seed": "node ./database/seed.js",
     "testing": "node ./database/index.js",
