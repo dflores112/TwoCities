@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import CityPicker from './CityPicker.jsx';
 import CityScoresChart from './CityScoresChart.jsx';
 import OverallScoresChart from './OverallScoresChart.jsx';

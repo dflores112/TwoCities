@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-width: 80%;
+width: 90%;
 margin:auto;
+padding:30px;
 `;
 const ContainerGrid = styled.div`
-display: grid;
-grid-template-columns: 50% 50%;
-grid-template-rows: 50% 50%;
 padding:10px;
+
+@media (max-width: 768px) {
+display: flex;
+flex-direction:column;
+}
+@media (min-width: 1024px) {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  }
 `;
 
 const ButtonWrap = styled.div`
@@ -32,6 +40,10 @@ const Form = styled.form`
 color:#EB7326;
 font-weight: 700;
 font-size: 18px;
+@media (max-width: 768px) {
+  font-weight: 500;
+  font-size 14px;
+    }
 `;
 
 const Select = styled.select`
@@ -45,6 +57,10 @@ color: white;
 padding: 5px;
 margin:4px;
 margin-top: 8px;
+@media (max-width: 768px) {
+  font-weight: 400;
+  font-size 12px;
+    }
 `;
 
 const Submit = styled.input`
@@ -64,6 +80,10 @@ padding:7px;
   cursor:pointer;
   transition: all .3s linear;
 }
+@media (max-width: 768px) {
+  font-weight: 400;
+  font-size 12px;
+    }
 `;
 
 const Button = styled.button`
@@ -86,6 +106,11 @@ text-align:center;
   cursor:pointer;
   transition: all .3s linear;
 }
+
+@media (max-width: 768px) {
+font-weight: 400;
+font-size 12px;
+  }
 `;
 
 const CityName = styled.div`
@@ -93,6 +118,11 @@ padding:7px;
 color: white;
 font-weight: 600;
 font-size: 16px;
+
+@media (max-width: 768px) {
+  font-weight: 400;
+  font-size 12px;
+    }
 `;
 
 const Image = styled.img`
@@ -112,3 +142,7 @@ const styles = {
 };
 
 export { styles as default };
+
+
+
+
