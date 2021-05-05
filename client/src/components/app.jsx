@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   getCities() {
-    axios.get('/scores')
+    axios.get('/api/scores')
       .then((res) => this.setState({ cities: res.data, overall: [...res.data], categories: [...res.data] }))
       .catch((err) => console.log(err));
   }

@@ -26,7 +26,7 @@ app.get('/api/cities/:cityId', (req, res) => {
   });
 });
 
-app.get('/scores', (req, res) => {
+app.get('/api/scores', (req, res) => {
   dbMethods.selectAllCities((err, cities) => {
     if (err) {
       res.sendStatus(500);
