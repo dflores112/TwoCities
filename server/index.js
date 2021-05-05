@@ -16,10 +16,10 @@ app.get('/api/cities/:cityId', (req, res) => {
     } else {
       const { link, name } = city[0];
       const scores = {};
-      scores['name'] = name;
-      scores['stats'] = [];
+      scores.name = name;
+      scores.stats = [];
       axios.get(link)
-        .then((response) => response.data.categories.forEach((category) => scores['stats'].push(category.score_out_of_10)))
+        .then((response) => response.data.categories.forEach((category) => scores.stats.push(category.score_out_of_10)))
         .then(() => res.status(200).send(scores))
         .catch(() => res.sendStatus(500));
     }
@@ -42,9 +42,17 @@ app.get('/api/localPrices/:cityID', (req, res) => {
     if (err) {
       res.sendStatus(500);
     } else {
+      let data;
+      const temp = city[0].name;
       axios.get(city[0].details)
-      .then((result) => res.send(result.data.categories[3].data))
-      .catch((err) => console.log(err));
+        .then((result) => data = result.data.categories[3].data)
+        .then((data) => {
+          data.shift();
+          data.pop();
+          data.push({ name: temp });
+        })
+        .then(() => res.status(200).send(data))
+        .catch((err) => console.log(err));
     }
   });
 });

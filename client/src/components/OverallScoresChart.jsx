@@ -1,6 +1,5 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import styled from 'styled-components';
 
 function OverallScoresChart(props) {
   const names = props.cities.map((city) => city.name);
@@ -50,7 +49,6 @@ function OverallScoresChart(props) {
         data={data}
         options={options}
       />
-
   );
 }
 

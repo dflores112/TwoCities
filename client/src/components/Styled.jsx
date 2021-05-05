@@ -73,6 +73,7 @@ border-radius:4px;
 border-color:transparent;
 margin:5px;
 padding:7px;
+-webkit-appearance: none;
 &:hover{
   color: #EB7326;
   background: transparent;
@@ -129,6 +130,13 @@ const Image = styled.img`
 height: 75px;
 `;
 
+const OverallHeader = styled.div`
+color: #EB7326;
+font-size: 20px;
+font-weight 700;
+text-align: center;
+`;
+
 const CostHeader = styled.div`
 color: #EB7326;
 font-size: 18px;
@@ -138,11 +146,7 @@ justify-content: center;
 `;
 
 const styles = {
-  Container, CostHeader, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, Image,
+  Container, CostHeader, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, OverallHeader, Image,
 };
 
 export { styles as default };
-
-
-
-

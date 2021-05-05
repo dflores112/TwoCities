@@ -7,16 +7,73 @@ import CategoryTable from './CategoryTable.jsx';
 import CostOfLivingChart from './CostOfLivingChart.jsx';
 import Styles from './Styled.jsx';
 
-const temp = [{ name: 'Covina', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 7.4, 5.7, 2.02, 2.93, 4.09, 4.32, 2.31, 8.63, 4.48, 5.14] }];
-
+const temp = [{ name: 'Berlin', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 7.4, 5.7, 2.02, 2.93, 4.09, 4.32, 2.31, 8.63, 4.48, 5.14] }];
+const temp2 = [
+  {
+    currency_dollar_value: 2.8,
+    id: 'COST-APPLES',
+    label: 'A kilogram of Apples',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 0.91,
+    id: 'COST-BREAD',
+    label: 'Bread',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 3.6,
+    id: 'COST-CAPPUCCINO',
+    label: 'A Cappuccino',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 11,
+    id: 'COST-CINEMA',
+    label: 'Movie ticket',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 41,
+    id: 'COST-FITNESS-CLUB',
+    label: 'Monthly fitness club membership',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 1.2,
+    id: 'COST-IMPORT-BEER',
+    label: 'A beer',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 100,
+    id: 'COST-PUBLIC-TRANSPORT',
+    label: 'Monthly public transport',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 10,
+    id: 'COST-RESTAURANT-MEAL',
+    label: 'Lunch',
+    type: 'currency_dollar'
+  },
+  {
+    currency_dollar_value: 13,
+    id: 'COST-TAXI',
+    label: '5km taxi ride',
+    type: 'currency_dollar'
+  },
+  { name: 'Berlin' }
+]
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cities: [], cityScores: temp, cityCount: 0, overall: [], categories: [],
+      cities: [], cityScores: temp, cityCount: 0, overall: [], categories: [], localPrices: temp2,
     };
     this.getCityScores = this.getCityScores.bind(this);
     this.sortCitiesByCategory = this.sortCitiesByCategory.bind(this);
+    this.getLocalPrices = this.getLocalPrices.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +103,12 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  getLocalPrices(id) {
+    axios.get(`/api/localPrices/${id}`)
+      .then((res) => this.setState({ localPrices: res.data }))
+      .catch((err) => console.log(err));
+  }
+
   sortScores(val) {
     const { overall } = this.state;
     if (val === 'ascending') {
@@ -71,7 +134,7 @@ class App extends React.Component {
 
   render() {
     const {
-      cities, cityScores, categories, overall,
+      cities, cityScores, categories, overall, localPrices,
     } = this.state;
     return (
       <>
@@ -81,13 +144,14 @@ class App extends React.Component {
         </Styles.Header>
         <Styles.ContainerGrid>
           <Styles.Container>
-            <CityPicker cities={cities} getCityScores={this.getCityScores} />
+            <CityPicker cities={cities} getCityScores={this.getCityScores} getLocalPrices={this.getLocalPrices} />
             <CityScoresChart cityScores={cityScores} />
           </Styles.Container>
           <Styles.Container>
             <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
           </Styles.Container>
           <Styles.Container>
+            <Styles.OverallHeader> Overall City Scores</Styles.OverallHeader>
             <Styles.ButtonWrap>
               <Styles.Button type="button" onClick={() => this.sortScores('ascending')}>Ascending</Styles.Button>
               <Styles.Button type="button" onClick={() => this.sortScores('descending')}>Descending</Styles.Button>
@@ -97,7 +161,7 @@ class App extends React.Component {
             <OverallScoresChart cities={overall} />
           </Styles.Container>
           <Styles.Container>
-            <CostOfLivingChart />
+            <CostOfLivingChart localPrices={localPrices} />
           </Styles.Container>
         </Styles.ContainerGrid>
       </>

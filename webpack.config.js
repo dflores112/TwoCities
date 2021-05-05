@@ -6,7 +6,7 @@ module.exports = {
   plugins: [new Visualizer({
     filename: './statistics.html',
   }),
-  new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+  // new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   new webpack.HashedModuleIdsPlugin(),
   new webpack.optimize.UglifyJsPlugin(), // minify everything
   new webpack.optimize.AggressiveMergingPlugin(), // Merge chunks
