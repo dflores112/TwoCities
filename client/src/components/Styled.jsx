@@ -114,6 +114,72 @@ font-size 12px;
   }
 `;
 
+const CityNameButton = styled.button`
+background: #EB7326;
+color: white;
+font-family: sans-serif;
+font-weight: 600;
+font-size 17px;
+border-radius:4px;
+border-color:transparent;
+padding:10px;
+width: 18%;
+overflow:hidden;
+margin:5px;
+text-align:center;
+&:hover{
+  color: #EB7326;
+  background: transparent;
+  border: 2px solid #EB7326;
+  cursor:pointer;
+  transition: all .3s linear;
+}
+
+&:hover::after {
+  textContent:"Remove";
+}
+
+@media (max-width: 768px) {
+font-weight: 400;
+font-size 12px;
+  }
+`;
+
+const Reset = styled.button`
+
+
+color: #EB7326;
+background: transparent;
+font-family: sans-serif;
+font-weight: 600;
+font-size 17px;
+border-radius:4px;
+border-color:#EB7326;
+border: 2px solid #EB7326;
+
+padding:10px;
+width: 15%;
+overflow:hidden;
+margin:5px;
+text-align:center;
+position:absolute;
+left:75%;
+top:31px;
+&:hover{
+  background: #EB7326;
+  color: white;
+  border: 2px solid #EB7326;
+  cursor:pointer;
+  transition: all .3s linear;
+}
+
+@media (max-width: 768px) {
+font-weight: 400;
+font-size 12px;
+  }
+`;
+
+
 const CityName = styled.div`
 padding:7px;
 color: white;
@@ -146,7 +212,7 @@ justify-content: center;
 `;
 
 const styles = {
-  Container, CostHeader, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, OverallHeader, Image,
+  Container, Reset,CityNameButton, CostHeader, ContainerGrid, ButtonWrap, Header, Form, Select, Submit, CityName, Button, OverallHeader, Image,
 };
 
 export { styles as default };

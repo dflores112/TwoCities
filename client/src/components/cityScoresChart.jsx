@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import Styles from './Styled.jsx';
 
 function CityScoresChart(props) {
   const data = {
@@ -64,12 +65,29 @@ function CityScoresChart(props) {
     },
   };
 
-  return (
-    <Bar
-      data={data}
-      options={options}
-    />
+  function swap(i, newVal) {
+    const temp = document.getElementById(i);
+    if (temp.textContent === 'Remove') {
+      temp.textContent = newVal;
+    } else {
+      temp.textContent = 'Remove';
+    }
+  }
 
+  const cityNames = props.cityScores.map((city, i) => (
+    <Styles.CityNameButton type="button" id={i} onMouseEnter={() => swap(i, city.name)} onMouseLeave={() => swap(i, city.name)}>
+      {' '}
+      {city.name}
+    </Styles.CityNameButton>
+  ));
+  return (
+    <>
+      {cityNames}
+      <Bar
+        data={data}
+        options={options}
+      />
+    </>
   );
 }
 

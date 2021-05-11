@@ -13,58 +13,58 @@ const temp2 = [
     currency_dollar_value: 2.8,
     id: 'COST-APPLES',
     label: 'A kilogram of Apples',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 0.91,
     id: 'COST-BREAD',
     label: 'Bread',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 3.6,
     id: 'COST-CAPPUCCINO',
     label: 'A Cappuccino',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 11,
     id: 'COST-CINEMA',
     label: 'Movie ticket',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 41,
     id: 'COST-FITNESS-CLUB',
     label: 'Monthly fitness club membership',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 1.2,
     id: 'COST-IMPORT-BEER',
     label: 'A beer',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 100,
     id: 'COST-PUBLIC-TRANSPORT',
     label: 'Monthly public transport',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 10,
     id: 'COST-RESTAURANT-MEAL',
     label: 'Lunch',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
   {
     currency_dollar_value: 13,
     id: 'COST-TAXI',
     label: '5km taxi ride',
-    type: 'currency_dollar'
+    type: 'currency_dollar',
   },
-  { name: 'Berlin' }
-]
+  { name: 'Berlin' },
+];
 class App extends React.Component {
   constructor(props) {
     super(props);
