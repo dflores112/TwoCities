@@ -155,7 +155,7 @@ class App extends React.Component {
       this.setState({ cityScores: newScores });
     });
   }
-
+  
   render() {
     const {
       cities, cityScores, categories, overall, localPrices,
