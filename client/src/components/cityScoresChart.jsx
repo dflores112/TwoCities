@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import Styles from './Styled.jsx';
 
 function CityScoresChart(props) {
+  const { removeCity } = props;
   const data = {
     labels: ['Housing', 'Cost of Living', 'Startups', 'Venture Capital', 'Travel Connectivity', 'Commute', 'Business Freedom', 'Safety', 'Healthcare', 'Education', 'Enviromental Quality', 'Economy', 'Internet Access', 'Leisure & Culture', 'Tolerance', 'Outdoors'],
     datasets: [
@@ -74,8 +75,9 @@ function CityScoresChart(props) {
     }
   }
 
+
   const cityNames = props.cityScores.map((city, i) => (
-    <Styles.CityNameButton type="button" id={i} onMouseEnter={() => swap(i, city.name)} onMouseLeave={() => swap(i, city.name)}>
+    <Styles.CityNameButton type="button" id={i} onClick={() => removeCity(i)} onMouseEnter={() => swap(i, city.name)} onMouseLeave={() => swap(i, city.name)}>
       {' '}
       {city.name}
     </Styles.CityNameButton>

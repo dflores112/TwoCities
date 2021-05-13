@@ -69,11 +69,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cities: [], cityScores: temp, cityCount: 0, overall: [], categories: [], localPrices: temp2,
+      cities: [], cityScores: temp, cityCount: 1, overall: [], categories: [], localPrices: temp2,
     };
     this.getCityScores = this.getCityScores.bind(this);
     this.sortCitiesByCategory = this.sortCitiesByCategory.bind(this);
     this.getLocalPrices = this.getLocalPrices.bind(this);
+    this.removeCity = this.removeCity.bind(this);
+    this.getCityRatings = this.getCityRatings.bind(this);
   }
 
   componentDidMount() {
@@ -94,9 +96,16 @@ class App extends React.Component {
     if (cityCount === 0) {
       cityScores.shift();
       this.setState({ cityCount: 1 });
-    } else {
-      this.setState({ cityCount: 2 });
+      this.getCityRatings(city);
     }
+    if (cityCount === 1) {
+      this.setState({ cityCount: 2 });
+      this.getCityRatings(city);
+    }
+  }
+
+  getCityRatings(city) {
+    const { cityScores } = this.state;
     axios.get(`/api/cities/${city}`)
       .then((res) => cityScores.push(res.data))
       .then(() => this.setState({ cityScores }))
@@ -132,6 +141,21 @@ class App extends React.Component {
     this.setState({ categories });
   }
 
+  removeCity(i) {
+    this.setState((prevState) => ({
+      cityCount: prevState.cityCount - 1,
+    }), () => {
+      const { cityScores } = this.state;
+      const newScores = [...cityScores];
+      if (i === 0) {
+        newScores.shift();
+      } else {
+        newScores.pop();
+      }
+      this.setState({ cityScores: newScores });
+    });
+  }
+
   render() {
     const {
       cities, cityScores, categories, overall, localPrices,
@@ -145,7 +169,7 @@ class App extends React.Component {
         <Styles.ContainerGrid>
           <Styles.Container>
             <CityPicker cities={cities} getCityScores={this.getCityScores} getLocalPrices={this.getLocalPrices} />
-            <CityScoresChart cityScores={cityScores} />
+            <CityScoresChart cityScores={cityScores} removeCity={this.removeCity} />
           </Styles.Container>
           <Styles.Container>
             <CategoryTable cities={categories} sortCitiesByCategory={this.sortCitiesByCategory} />
