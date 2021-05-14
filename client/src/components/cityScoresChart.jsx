@@ -3,40 +3,40 @@ import { Bar } from 'react-chartjs-2';
 import Styles from './Styled.jsx';
 
 function CityScoresChart(props) {
-  const { removeCity } = props;
+  const { removeCity,cityScores } = props;
   const data = {
     labels: ['Housing', 'Cost of Living', 'Startups', 'Venture Capital', 'Travel Connectivity', 'Commute', 'Business Freedom', 'Safety', 'Healthcare', 'Education', 'Enviromental Quality', 'Economy', 'Internet Access', 'Leisure & Culture', 'Tolerance', 'Outdoors'],
     datasets: [
     ],
   };
-  if (props.cityScores.length) {
-    if (props.cityScores.length === 1) {
+  if (cityScores.length) {
+    if (cityScores.length === 1) {
       data.datasets.push({
-        label: props.cityScores[0].name,
+        label: cityScores[0].name,
         backgroundColor: 'rgba(255, 255, 255, 0.3)',
         borderColor: 'rgba(255, 255, 255, 0.8)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
         hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
-        data: props.cityScores[0].stats,
+        data: cityScores[0].stats,
       });
     } else {
       const temp1 = [{
-        label: props.cityScores[0].name,
+        label: cityScores[0].name,
         backgroundColor: 'rgba(255, 255, 255, 0.3)',
         borderColor: 'rgba(255, 255, 255, 0.8)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
         hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
-        data: props.cityScores[0].stats,
+        data: cityScores[0].stats,
       }, {
-        label: props.cityScores[1].name,
+        label: cityScores[1].name,
         backgroundColor: 'rgba(235, 115, 38, 0.3)',
         borderColor: 'rgba(235, 115, 38, 0.8)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(235, 115, 38, 0.8)',
         hoverBorderColor: 'rgba(235, 115, 38, 0.8)',
-        data: props.cityScores[1].stats,
+        data: cityScores[1].stats,
       }];
       data.datasets = temp1;
     }
@@ -76,7 +76,7 @@ function CityScoresChart(props) {
   }
 
 
-  const cityNames = props.cityScores.map((city, i) => (
+  const cityNames = cityScores.map((city, i) => (
     <Styles.CityNameButton type="button" id={i} onClick={() => removeCity(i)} onMouseEnter={() => swap(i, city.name)} onMouseLeave={() => swap(i, city.name)}>
       {' '}
       {city.name}
