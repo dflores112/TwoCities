@@ -155,7 +155,7 @@ class App extends React.Component {
       this.setState({ cityScores: newScores });
     });
   }
-  
+
   render() {
     const {
       cities, cityScores, categories, overall, localPrices,
@@ -168,7 +168,11 @@ class App extends React.Component {
         </Styles.Header>
         <Styles.ContainerGrid>
           <Styles.Container>
-            <CityPicker cities={cities} getCityScores={this.getCityScores} getLocalPrices={this.getLocalPrices} />
+            <CityPicker
+              cities={cities}
+              getCityScores={this.getCityScores}
+              getLocalPrices={this.getLocalPrices}
+            />
             <CityScoresChart cityScores={cityScores} removeCity={this.removeCity} />
           </Styles.Container>
           <Styles.Container>

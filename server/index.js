@@ -5,6 +5,7 @@ const app = express();
 const port = 2000;
 const path = require('path');
 const dbMethods = require('../database/index.js');
+const controllers = require('../controllers/index.js');
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
@@ -36,26 +37,7 @@ app.get('/api/scores', (req, res) => {
   });
 });
 
-app.get('/api/localPrices/:cityID', (req, res) => {
-  const { cityID } = req.params;
-  dbMethods.findCity(cityID, (err, city) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      let data;
-      const temp = city[0].name;
-      axios.get(city[0].details)
-        .then((result) => data = result.data.categories[3].data)
-        .then((data) => {
-          data.shift();
-          data.pop();
-          data.push({ name: temp });
-        })
-        .then(() => res.status(200).send(data))
-        .catch((err) => console.log(err));
-    }
-  });
-});
+app.get('/api/localPrices/:cityID', controllers.findLocalPrices);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

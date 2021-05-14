@@ -5,7 +5,7 @@ import Styles from './Styled.jsx';
 function CostOfLivingChart({localPrices}) {
   const labels = localPrices.map((item) => item.label);
   const prices = localPrices.map((item) => item.currency_dollar_value);
-  const {name} = localPrices[9];
+  const {name} = localPrices[localPrices.length - 1];
   labels.pop();
   prices.pop();
   const data = {
