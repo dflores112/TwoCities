@@ -11,7 +11,7 @@ async function getLocalPrices(link) {
       response = result.categories[i].data;
     }
   });
-  return response;
+  return response.slice(1);
 }
 
 function findLocalPrices(req, res) {
