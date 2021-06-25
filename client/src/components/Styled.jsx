@@ -37,7 +37,7 @@ font-weight: 600;
 `;
 
 const Form = styled.form`
-color:#EB7326;
+color:#1da1f2;
 font-weight: 700;
 font-size: 18px;
 @media (max-width: 768px) {
@@ -64,7 +64,7 @@ margin-top: 8px;
 `;
 
 const Submit = styled.input`
-background: #EB7326;
+background: #1da1f2;
 color: white;
 font-family: sans-serif;
 font-weight: 600;
@@ -75,9 +75,9 @@ margin:5px;
 padding:7px;
 -webkit-appearance: none;
 &:hover{
-  color: #EB7326;
+  color: #1da1f2;
   background: transparent;
-  border: 2px solid #EB7326;
+  border: 2px solid #1da1f2;
   cursor:pointer;
   transition: all .3s linear;
 }
@@ -88,7 +88,7 @@ padding:7px;
 `;
 
 const Button = styled.button`
-background: #EB7326;
+background: #1da1f2;
 color: white;
 font-family: sans-serif;
 font-weight: 600;
@@ -101,9 +101,9 @@ overflow:hidden;
 margin:5px;
 text-align:center;
 &:hover{
-  color: #EB7326;
+  color: #1da1f2;
   background: transparent;
-  border: 2px solid #EB7326;
+  border: 2px solid #1da1f2;
   cursor:pointer;
   transition: all .3s linear;
 }
@@ -115,7 +115,7 @@ font-size 12px;
 `;
 
 const CityNameButton = styled.button`
-background: #EB7326;
+background: #1da1f2;
 color: white;
 font-family: sans-serif;
 font-weight: 600;
@@ -128,9 +128,9 @@ overflow:hidden;
 margin:5px;
 text-align:center;
 &:hover{
-  color: #EB7326;
+  color: #1da1f2;
   background: transparent;
-  border: 2px solid #EB7326;
+  border: 2px solid #1da1f2;
   cursor:pointer;
   transition: all .3s linear;
 }
@@ -197,14 +197,14 @@ height: 75px;
 `;
 
 const OverallHeader = styled.div`
-color: #EB7326;
+color: #1da1f2;
 font-size: 20px;
 font-weight 700;
 text-align: center;
 `;
 
 const CostHeader = styled.div`
-color: #EB7326;
+color: #1da1f2;
 font-size: 18px;
 font-weight: 600; 
 display: flex;

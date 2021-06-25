@@ -28,7 +28,7 @@ function CostOfLivingChart({ localPrices }) {
         tension: 0.1,
       }, {
         label: localPrices[1].name,
-        borderColor: 'rgba(235, 115, 38, 0.8)',
+        borderColor: 'rgba(29,161,242,0.8)',
         borderWidth: 1,
         data: localPrices[1].stats,
         fill: false,

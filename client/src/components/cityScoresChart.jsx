@@ -31,11 +31,11 @@ function CityScoresChart(props) {
         data: cityScores[0].stats,
       }, {
         label: cityScores[1].name,
-        backgroundColor: 'rgba(235, 115, 38, 0.3)',
-        borderColor: 'rgba(235, 115, 38, 0.8)',
+        backgroundColor: 'rgba(29,161,242, 0.3)',
+        borderColor: 'rgba(29,161,242,0.8)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(235, 115, 38, 0.8)',
-        hoverBorderColor: 'rgba(235, 115, 38, 0.8)',
+        hoverBackgroundColor: 'rgba(29,161,242,0.8)',
+        hoverBorderColor: 'rgba(29,161,242,0.8)',
         data: cityScores[1].stats,
       }];
       data.datasets = temp1;
