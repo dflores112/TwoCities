@@ -33,7 +33,7 @@ color: black;
 height:75px;
 position:relative;
 font-weight: 600;
-
+overflow:hidden;
 `;
 
 const Form = styled.form`
@@ -193,7 +193,9 @@ font-size: 16px;
 `;
 
 const Image = styled.img`
-height: 75px;
+height: 100px;
+top: -30px;
+position:relative;
 `;
 
 const OverallHeader = styled.div`

@@ -115,10 +115,12 @@ class App extends React.Component {
       cities, cityScores, categories, overall, localPrices,
     } = this.state;
     return (
+
+      
       <>
         <Styles.Header>
           {' '}
-          <Styles.Image src="https://live.staticflickr.com/65535/51149263786_1fe794874b.jpg" alt="Italian Trulli" />
+          <Styles.Image src="https://live.staticflickr.com/65535/51268636837_b4b8b7267b_z.jpg" alt="Italian Trulli" />
         </Styles.Header>
         <Styles.ContainerGrid>
           <Styles.Container>
