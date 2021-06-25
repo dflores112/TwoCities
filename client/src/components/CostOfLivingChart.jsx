@@ -2,26 +2,41 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Styles from './Styled.jsx';
 
-function CostOfLivingChart({localPrices}) {
-  const labels = localPrices.map((item) => item.label);
-  const prices = localPrices.map((item) => item.currency_dollar_value);
-  const {name} = localPrices[localPrices.length - 1];
-  labels.pop();
-  prices.pop();
+function CostOfLivingChart({ localPrices }) {
   const data = {
-    labels,
+    labels: ['A Kilogram of Apples', 'Bread', 'A Cappucino', 'Movie Ticket', 'Gym Membership', 'A beer', 'Monthly public transportation', 'Lunch', '5km taxi ride'],
     datasets: [
-      {
-        label: name,
-        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
-        hoverBorderColor: 'rgba(255, 255, 255, 0.8)',
-        data: prices,
-      },
     ],
   };
+  if (localPrices.length) {
+    if (localPrices.length === 1) {
+      data.datasets.push({
+        label: localPrices[0].name,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
+        borderWidth: 1,
+        data: localPrices[0].stats,
+        fill: false,
+        tension: 0.1,
+      });
+    } else {
+      const temp1 = [{
+        label: localPrices[0].name,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
+        borderWidth: 1,
+        data: localPrices[0].stats,
+        fill: false,
+        tension: 0.1,
+      }, {
+        label: localPrices[1].name,
+        borderColor: 'rgba(235, 115, 38, 0.8)',
+        borderWidth: 1,
+        data: localPrices[1].stats,
+        fill: false,
+        tension: 0.1,
+      }];
+      data.datasets = temp1;
+    }
+  }
 
   const options = {
     legend: {

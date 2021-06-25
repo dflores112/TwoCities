@@ -8,62 +8,11 @@ import CostOfLivingChart from './CostOfLivingChart.jsx';
 import Styles from './Styled.jsx';
 
 const temp = [{ name: 'Berlin', stats: [9.928, 9.125, 3.97, 0, 2.04, 5.29, 5.9, 7.4, 5.7, 2.02, 2.93, 4.09, 4.32, 2.31, 8.63, 4.48, 5.14] }];
-const temp2 = [
-  {
-    currency_dollar_value: 2.8,
-    id: 'COST-APPLES',
-    label: 'A kilogram of Apples',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 0.91,
-    id: 'COST-BREAD',
-    label: 'Bread',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 3.6,
-    id: 'COST-CAPPUCCINO',
-    label: 'A Cappuccino',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 11,
-    id: 'COST-CINEMA',
-    label: 'Movie ticket',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 41,
-    id: 'COST-FITNESS-CLUB',
-    label: 'Monthly fitness club membership',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 1.2,
-    id: 'COST-IMPORT-BEER',
-    label: 'A beer',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 100,
-    id: 'COST-PUBLIC-TRANSPORT',
-    label: 'Monthly public transport',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 10,
-    id: 'COST-RESTAURANT-MEAL',
-    label: 'Lunch',
-    type: 'currency_dollar',
-  },
-  {
-    currency_dollar_value: 13,
-    id: 'COST-TAXI',
-    label: '5km taxi ride',
-    type: 'currency_dollar',
-  },
-  { name: 'Berlin' },
+const temp2 = [{
+  name: 'Berlin',
+  stats: [2.8, 0.91, 3.6, 11, 41, 1.2, 100, 10, 13,
+  ],
+},
 ];
 class App extends React.Component {
   constructor(props) {
@@ -113,8 +62,10 @@ class App extends React.Component {
   }
 
   getLocalPrices(id) {
+    const { localPrices } = this.state;
     axios.get(`/api/localPrices/${id}`)
-      .then((res) => this.setState({ localPrices: res.data }))
+      .then((res) => localPrices.push(res.data[0]))
+      .then(() => this.setState({ localPrices }))
       .catch((err) => console.log(err));
   }
 
@@ -145,14 +96,17 @@ class App extends React.Component {
     this.setState((prevState) => ({
       cityCount: prevState.cityCount - 1,
     }), () => {
-      const { cityScores } = this.state;
+      const { cityScores, localPrices } = this.state;
       const newScores = [...cityScores];
+      const newPrices = [...localPrices];
       if (i === 0) {
         newScores.shift();
+        newPrices.shift();
       } else {
         newScores.pop();
+        newPrices.pop();
       }
-      this.setState({ cityScores: newScores });
+      this.setState({ cityScores: newScores, localPrices: newPrices });
     });
   }
 

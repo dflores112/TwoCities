@@ -23,8 +23,10 @@ function findLocalPrices(req, res) {
       const temp = city[0].name;
       getLocalPrices(city[0].details)
         .then((result) => {
-          result.push({ name: temp });
-          return result;
+          const data = result.map((category) => category.currency_dollar_value);
+          const pricing = [];
+          pricing.push({ name: temp, stats: data });
+          return pricing;
         })
         .then((result) => res.status(200).send(result))
         .catch((er) => console.log(er));
